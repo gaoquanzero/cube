@@ -1,0 +1,26 @@
+<md-dialog aria-label="XXXX">
+    <form>
+        <md-toolbar style="background: none">
+            <div class="md-toolbar-tools">
+                <h2 style="color: black">TOP 5</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="answer('not applicable')">
+                    <md-icon md-svg-src="svg/ic_clear_black_18px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div ng-controller="AppCtrl">
+                <md-content>
+                    <md-list>
+                        <p><md-icon md-svg-icon="svg/ic_filter_1_black_18px.svg"></md-icon> name score</p>
+                        <p><md-icon md-svg-icon="svg/ic_filter_2_black_18px.svg"></md-icon> name score</p>
+                        <p><md-icon md-svg-icon="svg/ic_filter_3_black_18px.svg"></md-icon> name score</p>
+                        <p><md-icon md-svg-icon="svg/ic_filter_4_black_18px.svg"></md-icon> name score</p>
+                        <p><md-icon md-svg-icon="svg/ic_filter_5_black_18px.svg"></md-icon> name score</p>
+                    </md-list>
+                </md-content>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

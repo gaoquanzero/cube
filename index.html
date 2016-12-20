@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html lang="en" data-ng-app="StarterApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!-- 删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="format-detection" content="telphone=no, email=no"/>
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>MagicCube</title>
+
+    <link rel="stylesheet" href="css/angular-material.css">
+    <link rel="stylesheet" href="css/v1.css">
+</head>
+<body layout="row" layout-align="center center" ng-controller="AppCtrl" id="mybody" flex-order-sm>
+<div ng-controller="AppCtrl" id="controlPanel">
+    <div class="md-display-2" layout="row" layout-align="center">HIT IT</div>
+
+    <div class="md-chip-content">
+        <section layout="row" layout-sm="column" layout-align="center center" class="section md-raised">
+            <md-button class="md-raised" id="customGameButton">CUSTOM MODE</md-button>
+            <br>
+            <md-button class="md-raised" id="commonGameButton">COMMON MODE</md-button>
+        </section>
+        <br>
+        <br>
+        <section layout="row" layout-align="center center">
+            <md-button class="md-icon-button md-primary" ng-click="toggle()" aria-label="Settings">
+                <md-icon md-svg-icon="svg/{{volume}}"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="showAdvanced($event)" flex
+                       flex-md="100">
+                <md-icon md-svg-icon="svg/ic_people_black_24px.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="More">
+                <md-icon md-svg-icon="svg/ic_launch_black_24px.svg"></md-icon>
+            </md-button>
+        </section>
+    </div>
+</div>
+<script src="./js/angular.min.js"></script>
+<script src="./js/angular-material.min.js"></script>
+<script src="./js/angular-aria.min.js"></script>
+<script src="./js/angular-animate.min.js"></script>
+<script src="./js/AppCtrl.js"></script>
+<script src="three.min.js"></script>
+<script src="constant.js"></script>
+<script src="Cube.js"></script>
+<script src="MagicCube.js"></script>
+<script>
+    window.onload = function () {
+        var customGameButton = document.getElementById('customGameButton');
+        var commonGameButton = document.getElementById('commonGameButton');
+
+        customGameButton.onclick = function () {
+            var ctrlPanel = document.getElementById('controlPanel');
+            var canvasGame = document.createElement('canvas');
+            ctrlPanel.style.display = 'none';
+            document.body.appendChild(canvasGame);
+            canvasGame.setAttribute('id', 'myCanvas');
+
+            var magicCube = new MagicCube('myCanvas',true);
+            magicCube.start();
+
+        };
+
+        commonGameButton.onclick = function () {
+            var ctrlPanel = document.getElementById('controlPanel');
+            var canvasGame = document.createElement('canvas');
+            document.body.replaceChild(canvasGame, ctrlPanel);
+            canvasGame.setAttribute('id', 'myCanvas');
+
+            var magicCube = new MagicCube('myCanvas');
+            magicCube.start();
+
+        }
+    }
+</script>
+</body>
+</html>
